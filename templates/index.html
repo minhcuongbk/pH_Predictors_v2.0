@@ -2,20 +2,21 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Dự đoán pH theo tỷ lệ dầu</title>
+  <title>Dự đoán pH</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40" class="me-2">
-      PH Predictor
-      <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40" class="ms-2">
-    </a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="/predict_single">Dự đoán 1 lần</a>
-      <a class="nav-link" href="/trend">Dự đoán theo tuần</a>
+  <div class="container d-flex justify-content-between align-items-center">
+    <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40">
+    <span class="navbar-brand mx-auto fs-4">PH Predictor</span>
+    <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40">
+  </div>
+  <div class="container mt-2">
+    <div class="navbar-nav mx-auto text-center">
+      <a class="nav-link" href="/">🏠 Trang chủ</a>
+      <a class="nav-link" href="/predict_single">📥 Dự đoán 1 lần</a>
+      <a class="nav-link" href="/trend">📈 Dự đoán theo ngày</a>
     </div>
   </div>
 </nav>
@@ -35,9 +36,10 @@
           </div>
           {% endfor %}
         </div>
-        <div class="d-flex justify-content-end mt-3 gap-2">
-          <button type="reset" class="btn btn-outline-secondary">🧹 Xóa dữ liệu</button>
-          <button type="submit" class="btn btn-success">Dự đoán pH</button>
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/" class="btn btn-outline-secondary">🏠 Trang chủ</a>
+          <button type="reset" class="btn btn-outline-warning">🧹 Xóa</button>
+          <button type="submit" class="btn btn-success">📊 Dự đoán</button>
         </div>
       </form>
       {% if prediction %}
