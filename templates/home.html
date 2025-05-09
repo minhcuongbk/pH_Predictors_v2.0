@@ -2,28 +2,46 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Chọn chế độ dự đoán</title>
+  <title>Trang chủ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .footer-text {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 60px;
+      color: #004080;
+    }
+  </style>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40" class="me-2">
-      PH Predictor
-      <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40" class="ms-2">
-    </a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="/predict_single">Dự đoán 1 lần</a>
-      <a class="nav-link" href="/trend">Dự đoán theo tuần</a>
+  <div class="container d-flex justify-content-between align-items-center">
+    <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40">
+    <span class="navbar-brand mx-auto fs-4">PH Predictor</span>
+    <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40">
+  </div>
+  <div class="container mt-2">
+    <div class="navbar-nav mx-auto text-center">
+      <a class="nav-link" href="/">🏠 Trang chủ</a>
+      <a class="nav-link" href="/predict_single">📥 Dự đoán 1 lần</a>
+      <a class="nav-link" href="/trend">📈 Dự đoán theo ngày</a>
     </div>
   </div>
 </nav>
 
-<div class="container py-5 text-center">
+<div class="container text-center">
+  <img src="{{ url_for('static', filename='anh.png') }}" class="img-fluid rounded shadow" style="max-height: 500px;">
+</div>
+
+<div class="container text-center py-5">
   <h2>📌 Chọn chế độ dự đoán pH</h2>
   <a href="/predict_single" class="btn btn-outline-primary btn-lg m-3">🔹 Dự đoán 1 lần</a>
-  <a href="/trend" class="btn btn-outline-success btn-lg m-3">📈 Dự đoán theo tuần</a>
+  <a href="/trend" class="btn btn-outline-success btn-lg m-3">📅 Dự đoán theo ngày</a>
+</div>
+
+<div class="footer-text">
+  ONE TEAM – ONE GOAL
 </div>
 </body>
 </html>
