@@ -24,6 +24,22 @@
 
 <div class="container py-4">
   <h2 class="text-center mb-4">📈 Biểu đồ trend pH theo ngày</h2>
+
+  <!-- Điều chỉnh trục Y -->
+  <form id="scaleForm" class="row g-2 mb-4 justify-content-center">
+    <div class="col-auto">
+      <label class="form-label">Y Min</label>
+      <input type="number" step="any" id="yMin" class="form-control" placeholder="VD: 4.5">
+    </div>
+    <div class="col-auto">
+      <label class="form-label">Y Max</label>
+      <input type="number" step="any" id="yMax" class="form-control" placeholder="VD: 7.0">
+    </div>
+    <div class="col-auto align-self-end">
+      <button type="submit" class="btn btn-primary">Cập nhật trục Y</button>
+    </div>
+  </form>
+
   <canvas id="phTrendChart" height="100"></canvas>
 
   <div class="mt-5">
@@ -46,24 +62,62 @@
 <script>
 const labels = {{ trend_data | map(attribute='date') | list | tojson }};
 const data = {{ trend_data | map(attribute='ph') | list | tojson }};
-new Chart(document.getElementById('phTrendChart').getContext('2d'), {
+
+const ctx = document.getElementById('phTrendChart').getContext('2d');
+const chart = new Chart(ctx, {
   type: 'line',
   data: {
     labels: labels,
-    datasets: [{
-      label: 'pH dự đoán',
-      data: data,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.3
-    }]
+    datasets: [
+      {
+        label: 'pH dự đoán',
+        data: data,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.3,
+        fill: false
+      },
+      {
+        label: 'Min pH = 5.5',
+        data: Array(labels.length).fill(5.5),
+        borderColor: 'red',
+        borderWidth: 1,
+        borderDash: [5, 5],
+        pointRadius: 0,
+        fill: false
+      },
+      {
+        label: 'Max pH = 6.5',
+        data: Array(labels.length).fill(6.5),
+        borderColor: 'black',
+        borderWidth: 1,
+        borderDash: [5, 5],
+        pointRadius: 0,
+        fill: false
+      }
+    ]
   },
   options: {
     responsive: true,
     scales: {
-      y: { beginAtZero: true, title: { display: true, text: 'pH' }},
-      x: { title: { display: true, text: 'Ngày' }}
+      y: {
+        beginAtZero: false,
+        title: { display: true, text: 'pH' }
+      },
+      x: {
+        title: { display: true, text: 'Ngày' }
+      }
     }
   }
+});
+
+// Cập nhật trục Y khi người dùng nhập
+document.getElementById('scaleForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const ymin = parseFloat(document.getElementById('yMin').value);
+  const ymax = parseFloat(document.getElementById('yMax').value);
+  if (!isNaN(ymin)) chart.options.scales.y.min = ymin;
+  if (!isNaN(ymax)) chart.options.scales.y.max = ymax;
+  chart.update();
 });
 </script>
 </body>
