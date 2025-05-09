@@ -1,1 +1,32 @@
-...
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chọn chế độ dự đoán</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40" class="me-2">
+      PH Predictor
+      <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40" class="ms-2">
+    </a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="/predict_single">Dự đoán 1 lần</a>
+      <a class="nav-link" href="/trend">Dự đoán theo tuần</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">📌 Chọn chế độ dự đoán pH</h2>
+    <div class="d-flex justify-content-center gap-5">
+        <a href="/predict_single" class="btn btn-outline-primary btn-lg">🔹 Dự đoán 1 lần theo tỷ lệ</a>
+        <a href="/trend" class="btn btn-outline-success btn-lg">📈 Dự đoán theo tuần (biểu đồ)</a>
+    </div>
+</div>
+</body>
+</html>
