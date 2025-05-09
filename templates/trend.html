@@ -8,15 +8,16 @@
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40" class="me-2">
-      PH Predictor
-      <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40" class="ms-2">
-    </a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="/predict_single">Dự đoán 1 lần</a>
-      <a class="nav-link" href="/trend">Dự đoán theo tuần</a>
+  <div class="container d-flex justify-content-between align-items-center">
+    <img src="{{ url_for('static', filename='logo_bsr.jpg') }}" height="40">
+    <span class="navbar-brand mx-auto fs-4">PH Predictor</span>
+    <img src="{{ url_for('static', filename='logo_inspection.png') }}" height="40">
+  </div>
+  <div class="container mt-2">
+    <div class="navbar-nav mx-auto text-center">
+      <a class="nav-link" href="/">🏠 Trang chủ</a>
+      <a class="nav-link" href="/predict_single">📥 Dự đoán 1 lần</a>
+      <a class="nav-link" href="/trend">📈 Dự đoán theo ngày</a>
     </div>
   </div>
 </nav>
@@ -34,6 +35,10 @@
         {% endfor %}
       </tbody>
     </table>
+    <div class="text-center mt-4">
+      <a href="/trend" class="btn btn-secondary">🔁 Dự đoán lại</a>
+      <a href="/" class="btn btn-primary">🏠 Trang chủ</a>
+    </div>
   </div>
 </div>
 
