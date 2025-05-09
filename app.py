@@ -56,12 +56,14 @@ def trend():
         start_date = datetime.strptime(start_str, '%Y-%m-%d')
         end_date = datetime.strptime(end_str, '%Y-%m-%d')
 
+        # Tạo danh sách ngày theo từng ngày
         date_list = []
         current_date = start_date
         while current_date <= end_date:
             date_list.append(current_date.strftime('%Y-%m-%d'))
-            current_date += timedelta(days=7)
+            current_date += timedelta(days=1)
 
+        # Nếu là POST có dữ liệu dự đoán (submit lần 2)
         if 'predict_trend' in request.form:
             trend_data = []
             for date in date_list:
@@ -82,6 +84,7 @@ def trend():
 
             return render_template('trend.html', trend_data=trend_data)
 
+        # Nếu mới nhập ngày → render form nhập dữ liệu theo từng ngày (mỗi ngày một nhóm input)
         return render_template('trend_input.html', oil_names=oil_names, date_list=date_list)
 
     except Exception as e:
