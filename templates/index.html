@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Dự đoán pH theo tỷ lệ dầu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Dự đoán pH theo tỷ lệ dầu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" href="/">
@@ -21,33 +20,33 @@
   </div>
 </nav>
 
-<div class="container py-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white text-center">
-            <h4>📌 Nhập tỷ lệ các loại dầu</h4>
-        </div>
-        <div class="card-body">
-            <form action="/predict_single" method="post">
-                <div class="row">
-                    {% for oil in oil_names %}
-                    <div class="col-md-3 mb-3">
-                        <label class="form-label">{{ oil }}</label>
-                        <input type="number" step="any" name="{{ oil }}" class="form-control" placeholder="%" min="0">
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="d-flex justify-content-end mt-3 gap-2">
-                    <button type="reset" class="btn btn-outline-secondary">🧹 Xóa dữ liệu</button>
-                    <button type="submit" class="btn btn-success">Dự đoán pH</button>
-                </div>
-            </form>
-            {% if prediction %}
-            <div class="alert alert-info mt-4 text-center">
-                <strong>Kết quả pH dự đoán:</strong> {{ prediction }}
-            </div>
-            {% endif %}
-        </div>
+<div class="container">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white text-center">
+      <h4>📌 Nhập tỷ lệ các loại dầu</h4>
     </div>
+    <div class="card-body">
+      <form method="post" action="/predict_single">
+        <div class="row">
+          {% for oil in oil_names %}
+          <div class="col-md-3 mb-3">
+            <label class="form-label">{{ oil }}</label>
+            <input type="number" step="any" name="{{ oil }}" class="form-control" placeholder="%" min="0">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="d-flex justify-content-end mt-3 gap-2">
+          <button type="reset" class="btn btn-outline-secondary">🧹 Xóa dữ liệu</button>
+          <button type="submit" class="btn btn-success">Dự đoán pH</button>
+        </div>
+      </form>
+      {% if prediction %}
+      <div class="alert alert-info mt-4 text-center">
+        <strong>Kết quả pH dự đoán:</strong> {{ prediction }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
 </div>
 </body>
 </html>
