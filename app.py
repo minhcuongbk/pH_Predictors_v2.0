@@ -75,9 +75,9 @@ def trend():
                         value = 0
                     inputs.append(float(value))
                 total = sum(inputs)
-                if total > 100:
-                    return render_template('trend_input.html', oil_names=oil_names, date_list=date_list,
-                                           error=f"Tổng tỷ lệ dầu vượt quá 100%")
+               # if total > 100:
+               #     return render_template('trend_input.html', oil_names=oil_names, date_list=date_list,
+               #                            error=f"Tổng tỷ lệ dầu vượt quá 100%")
                 X = np.array(inputs).reshape(1, -1)
                 predicted_ph = model.predict(X)[0]
                 trend_data.append({"date": date, "ph": round(predicted_ph, 2)})
