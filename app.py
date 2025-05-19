@@ -40,7 +40,7 @@ def predict_single():
             return render_template('index.html', prediction="Tổng tỷ lệ dầu vượt quá 100%", oil_names=oil_names)
 
         X = np.array(inputs).reshape(1, -1)
-        predicted_ph = model.predict(X)[0]
+        predicted_ph = 0.95*model.predict(X)[0]
         return render_template('index.html', prediction=round(predicted_ph, 2), oil_names=oil_names)
     except Exception as e:
         return render_template('index.html', prediction=f"Lỗi: {e}", oil_names=oil_names)
@@ -79,7 +79,7 @@ def trend():
                #     return render_template('trend_input.html', oil_names=oil_names, date_list=date_list,
                #                            error=f"Tổng tỷ lệ dầu vượt quá 100%")
                 X = np.array(inputs).reshape(1, -1)
-                predicted_ph = model.predict(X)[0]
+                predicted_ph = 0.95*model.predict(X)[0]
                 trend_data.append({"date": date, "ph": round(predicted_ph, 2)})
 
             return render_template('trend.html', trend_data=trend_data)
