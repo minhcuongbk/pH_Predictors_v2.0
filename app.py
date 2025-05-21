@@ -35,9 +35,9 @@ def predict_single():
                 value = 0
             inputs.append(float(value))
 
-        total = sum(inputs)
-        if total > 100:
-            return render_template('index.html', prediction="Tổng tỷ lệ dầu vượt quá 100%", oil_names=oil_names)
+       # total = sum(inputs)
+        #if total > 100:
+        #    return render_template('index.html', prediction="Tổng tỷ lệ dầu vượt quá 100%", oil_names=oil_names)
 
         X = np.array(inputs).reshape(1, -1)
         predicted_ph = 0.95*model.predict(X)[0]
